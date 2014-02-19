@@ -183,6 +183,7 @@ def parse_ec2_userdata():
     # Option that specifies an alternative reflector.php
     parser.add_option("--reflector", action="store", type="string", dest="reflector")
 
+
     # Unsupported dev options
     # Option that allows for an emailed report of the startup diagnostics
     parser.add_option("--raidonly", action="store_true", dest="raidonly")
@@ -196,6 +197,8 @@ def parse_ec2_userdata():
     parser.add_option("--opscenterinterface", action="store", type="string", dest="opscenterinterface")
     # Option that allows a custom reservation id to be set
     parser.add_option("--customreservation", action="store", type="string", dest="customreservation")
+    # Option that allows usage of java7 already on the AMI
+    parser.add_option("--java7preinstalled", action="store_true", dest="java7preinstalled")
 
     # Community options
     # https://github.com/riptano/ComboAMI/pull/9
@@ -265,6 +268,11 @@ def use_ec2_userdata():
     if options.reflector:
         logger.info('Using reflector: {0}'.format(options.reflector))
 
+    if options.java7preinstalled:
+        logger.info('Will use pre-installed java7')
+        conf.set_config("AMI", 'java7preinstalled', 'True')
+
+
 def confirm_authentication():
     if conf.get_config("AMI", "Type") == "Enterprise":
         if options.username and options.password:
@@ -319,13 +327,14 @@ def setup_java_7():
     # As taken from: http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html
 
     if conf.get_config('AMI', 'java7') != 'True':
+        if conf.get_config('AMI', 'java7preinstalled') != 'True':
+            logger.pipe('yes', 'sudo add-apt-repository ppa:webupd8team/java')
+            logger.exe('sudo apt-get update')
+            logger.pipe('sudo echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true', 'sudo /usr/bin/debconf-set-selections')
+            logger.exe('sudo apt-get install -y oracle-java7-installer')
+            logger.exe('sudo apt-get install -y oracle-java7-set-default')
+            logger.exe('sudo update-java-alternatives -s java-7-oracle')
 
-        logger.pipe('yes', 'sudo add-apt-repository ppa:webupd8team/java')
-        logger.exe('sudo apt-get update')
-        logger.pipe('sudo echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true', 'sudo /usr/bin/debconf-set-selections')
-        logger.exe('sudo apt-get install -y oracle-java7-installer')
-        logger.exe('sudo apt-get install -y oracle-java7-set-default')
-        logger.exe('sudo update-java-alternatives -s java-7-oracle')
         logger.pipe('echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle"', 'tee -a /root/.profile')
         logger.pipe('echo "export JAVA_HOME=/usr/lib/jvm/java-7-oracle"', 'tee -a /home/ubuntu/.profile')
 
