@@ -9,7 +9,6 @@ Limitations
 ===========
 
 - This will not work for C* deploys that are not using vnodes.
-
 - The reflector as provided does not remember state beyond N minutes, if AWS replaces a dead node, the new node will come back in the scale group, but will not rejoin the cluster if the new node is started beyond the reflector's memory.  You will need to manually update the seed to put it back into the cluster, and also remove the dead node.
 - If you need machine types other than the m1.xlarge, you will need to add the configuration for the block mapping.
 - Your cluster (VPC) must be able to interact with sites on the internet to bootstrap the cluster.
