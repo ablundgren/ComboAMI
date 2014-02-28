@@ -8,6 +8,8 @@ It uses the AWS::StackID for the custom reservation to cause a cluster in multip
 Limitations
 ===========
 
+This will not work for C* deploys that are not using vnodes.
+
 As the reflector as provided does not remember state beyond N minutes, if AWS replaces a dead node, the new node will come back in the scale group, but will not rejoin the cluster if it happens beyond the reflector's memory.  You will need to manually update the seed to put it back into the cluster, and remove the dead node.
 
 If you need machine types other than the m1.xlarge, you will need to add the configuration for the block mapping.

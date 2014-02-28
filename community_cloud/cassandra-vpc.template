@@ -68,7 +68,6 @@
             "Fn::Join" : [ 
               " ",
               [
-                "--java7preinstalled", 
                 "--clustername",
                 { "Ref" : "clustername" },
                 "--totalnodes",
