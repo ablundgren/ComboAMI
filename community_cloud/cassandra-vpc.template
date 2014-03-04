@@ -12,8 +12,8 @@
       "InstanceType" : {
         "Type" : "String",
         "Default" : "m1.xlarge",
-        "AllowedValues" : ["m1.small", "m1.large", "m1.xlarge"],
-        "Description" : "Enter m1.small, m1.large or m1.xlarge. Default is <m1.xlarge>"
+        "AllowedValues" : ["m1.large", "m1.xlarge"],
+        "Description" : "Enter m1.large or m1.xlarge. Default is <m1.xlarge>"
       },
       "totalnodes" : {
         "Type" : "Number",
@@ -23,8 +23,8 @@
       "version" : {
         "Type" : "String",
         "Default" : "community",
-        "AllowedValues" : ["community", "enterprise"],
-        "Description" : "community or enterprise. Default is <community>"
+        "AllowedValues" : ["community"],
+        "Description" : "community only. Edit template to enable enterprise."
       },
       "reflector" : {
         "Type" : "String",
@@ -33,7 +33,6 @@
       },
       "release" : {
         "Type" : "String",
-        "Default" : "2.0.3",
         "Description" : "Release number."
       }
   },
