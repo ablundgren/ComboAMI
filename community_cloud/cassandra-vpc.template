@@ -46,8 +46,8 @@
         "AccountName" : "(COMMENT ONLY USED TO HELP YOU WITH MULTIPLE ACCOUNT SUPPORT",
 
         "casSubnets" : ["LIST", "EACH", "SUBNET","YOU", "WANT", "TO", "USE", "BY", "subnet-ID"],
-        "casZones" : ["LIST", "EACH", "AVAILABILITY", "ZONE", "YOU", WANT", "TO", "USE", "LIKE", "us-east-1a"],
-        "casSecGroups" : ["LIST", "EACH", "SECURITY", "GROUP", "YOU", WANT", "TO", "USE", "LIKE", "sg-ID"],
+        "casZones" : ["LIST", "EACH", "AVAILABILITY", "ZONE", "YOU", "WANT", "TO", "USE", "LIKE", "us-east-1a"],
+        "casSecGroups" : ["LIST", "EACH", "SECURITY", "GROUP", "YOU", "WANT", "TO", "USE", "LIKE", "sg-ID"]
       }
     }
   },
