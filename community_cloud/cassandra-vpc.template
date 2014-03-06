@@ -82,14 +82,7 @@
               ]
             ]
           }
-        },
-        "InstanceType" : "m1.xlarge",
-        "BlockDeviceMappings" : [
-          { "DeviceName" : "/dev/sdb", "VirtualName" : "ephemeral0" },
-          { "DeviceName" : "/dev/sdc", "VirtualName" : "ephemeral1" },
-          { "DeviceName" : "/dev/sdd", "VirtualName" : "ephemeral2" },
-          { "DeviceName" : "/dev/sde", "VirtualName" : "ephemeral3" }
-        ]
+        }
       }
     },
 
