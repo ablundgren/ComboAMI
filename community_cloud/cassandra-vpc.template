@@ -9,7 +9,7 @@
         "Default" : "Cassandra Cluster",
         "Description" : "Enter free form string for cluster name."
       },
-      "InstanceType" : {
+      "instancetype" : {
         "Type" : "String",
         "Default" : "m1.xlarge",
         "AllowedValues" : ["m1.large", "m1.xlarge"],
@@ -59,6 +59,7 @@
       "Type" : "AWS::AutoScaling::LaunchConfiguration",
       "Properties" : {
         "KeyName" : "vpc-instance",
+        "InstanceType" : { "Ref" : "instancetype" },
         "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMI" ]},
         "SecurityGroups" : 
           { "Fn::FindInMap" : [ "AccountId", { "Ref" : "AWS::AccountId" }, "casSecGroups" ]},
